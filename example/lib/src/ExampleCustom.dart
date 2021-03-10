@@ -13,41 +13,41 @@ class ExampleCustom extends StatefulWidget {
 
 class _ExampleCustomState extends State<ExampleCustom> {
   //properties want to custom
-  int _itemCount;
+  int? _itemCount;
 
-  bool _loop;
+  late bool _loop;
 
-  bool _autoplay;
+  bool? _autoplay;
 
-  int _autoplayDely;
+  int? _autoplayDely;
 
-  double _padding;
+  double? _padding;
 
-  bool _outer;
+  bool? _outer;
 
-  double _radius;
+  double? _radius;
 
-  double _viewportFraction;
+  double? _viewportFraction;
 
-  SwiperLayout _layout;
+  SwiperLayout? _layout;
 
-  int _currentIndex;
+  int? _currentIndex;
 
-  double _scale;
+  double? _scale;
 
-  Axis _scrollDirection;
+  Axis? _scrollDirection;
 
-  Curve _curve;
+  Curve? _curve;
 
-  double _fade;
+  double? _fade;
 
-  bool _autoplayDisableOnInteraction;
+  bool? _autoplayDisableOnInteraction;
 
-  CustomLayoutOption customLayoutOption;
+  CustomLayoutOption? customLayoutOption;
 
   Widget _buildItem(BuildContext context, int index) {
     return ClipRRect(
-      borderRadius: new BorderRadius.all(new Radius.circular(_radius)),
+      borderRadius: new BorderRadius.all(new Radius.circular(_radius!)),
       child: new Image.asset(
         images[index % images.length],
         fit: BoxFit.fill,
@@ -111,7 +111,7 @@ class _ExampleCustomState extends State<ExampleCustom> {
       customLayoutOption: customLayoutOption,
       fade: _fade,
       index: _currentIndex,
-      onIndexChanged: (int index) {
+      onIndexChanged: (int? index) {
         setState(() {
           _currentIndex = index;
         });
@@ -138,7 +138,7 @@ class _ExampleCustomState extends State<ExampleCustom> {
     );
   }
 
-  SwiperController _controller;
+  SwiperController? _controller;
   TextEditingController numberController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -156,13 +156,13 @@ class _ExampleCustomState extends State<ExampleCustom> {
             children: <Widget>[
               new RaisedButton(
                 onPressed: () {
-                  _controller.previous(animation: true);
+                  _controller!.previous(animation: true);
                 },
                 child: new Text("Prev"),
               ),
               new RaisedButton(
                 onPressed: () {
-                  _controller.next(animation: true);
+                  _controller!.next(animation: true);
                 },
                 child: new Text("Next"),
               ),
@@ -192,7 +192,7 @@ class _ExampleCustomState extends State<ExampleCustom> {
                     SwiperLayout.TINDER,
                     SwiperLayout.CUSTOM
                   ],
-                  valueChanged: (value) {
+                  valueChanged: (dynamic value) {
                     _layout = value;
                     setState(() {});
                   })),
@@ -206,7 +206,7 @@ class _ExampleCustomState extends State<ExampleCustom> {
           new FormWidget(
             label: "autoplayDisableOnInteractio",
             child: new Switch(
-                value: _autoplayDisableOnInteraction,
+                value: _autoplayDisableOnInteraction!,
                 onChanged: (bool value) =>
                     setState(() => _autoplayDisableOnInteraction = value)),
           ),
@@ -220,14 +220,14 @@ class _ExampleCustomState extends State<ExampleCustom> {
           new FormWidget(
             label: "outer",
             child: new Switch(
-                value: _outer,
+                value: _outer!,
                 onChanged: (bool value) => setState(() => _outer = value)),
           ),
           //Pannel Begin
           new FormWidget(
             label: "autoplay",
             child: new Switch(
-                value: _autoplay,
+                value: _autoplay!,
                 onChanged: (bool value) => setState(() => _autoplay = value)),
           ),
 
@@ -238,8 +238,8 @@ class _ExampleCustomState extends State<ExampleCustom> {
               step: 5.0,
               min: 0.0,
               max: 30.0,
-              onChangeValue: (num value) {
-                _padding = value.toDouble();
+              onChangeValue: (num? value) {
+                _padding = value?.toDouble();
                 setState(() {});
               },
             ),
@@ -251,8 +251,8 @@ class _ExampleCustomState extends State<ExampleCustom> {
               step: 0.1,
               min: 0.0,
               max: 1.0,
-              onChangeValue: (num value) {
-                _scale = value.toDouble();
+              onChangeValue: (num? value) {
+                _scale = value?.toDouble();
                 setState(() {});
               },
             ),
@@ -264,8 +264,8 @@ class _ExampleCustomState extends State<ExampleCustom> {
               step: 0.1,
               min: 0.0,
               max: 1.0,
-              onChangeValue: (num value) {
-                _fade = value.toDouble();
+              onChangeValue: (num? value) {
+                _fade = value?.toDouble();
                 setState(() {});
               },
             ),
@@ -277,8 +277,8 @@ class _ExampleCustomState extends State<ExampleCustom> {
               step: 1,
               min: 0,
               max: 100,
-              onChangeValue: (num value) {
-                _itemCount = value.toInt();
+              onChangeValue: (num? value) {
+                _itemCount = value?.toInt();
                 setState(() {});
               },
             ),
@@ -291,8 +291,8 @@ class _ExampleCustomState extends State<ExampleCustom> {
               step: 1.0,
               min: 0.0,
               max: 30.0,
-              onChangeValue: (num value) {
-                this._radius = value.toDouble();
+              onChangeValue: (num? value) {
+                this._radius = value?.toDouble();
                 setState(() {});
               },
             ),
@@ -305,8 +305,8 @@ class _ExampleCustomState extends State<ExampleCustom> {
               step: 0.1,
               max: 1.0,
               min: 0.5,
-              onChangeValue: (num value) {
-                _viewportFraction = value.toDouble();
+              onChangeValue: (num? value) {
+                _viewportFraction = value?.toDouble();
                 setState(() {});
               },
             ),
@@ -325,7 +325,7 @@ class _ExampleCustomState extends State<ExampleCustom> {
                     Curves.bounceIn,
                     Curves.fastOutSlowIn
                   ],
-                  valueChanged: (value) {
+                  valueChanged: (dynamic value) {
                     _curve = value;
                     setState(() {});
                   })),
